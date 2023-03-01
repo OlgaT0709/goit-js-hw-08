@@ -7,7 +7,6 @@ const messageRef = formRef.querySelector('textarea[name="message"]');
 
        
 // Під час завантаження сторінки перевіряємо стан сховища, і якщо там є збережені дані, заповнюємо ними поля форми.
-//  В іншому випадку поля повинні бути порожніми.
 const savedInput = JSON.parse(localStorage.getItem('feedback-form-state'));
 if (savedInput !== null) {
     
