@@ -6,6 +6,7 @@ import "simplelightbox/dist/simple-lightbox.min.css";
 import { galleryItems } from './gallery-items';
 // Change code below this line
 
+// Створюємо розмітку документа
 const galleryContainer = document.querySelector('.gallery');
 galleryContainer.insertAdjacentHTML('beforeend', createGalary(galleryItems))
 
@@ -20,4 +21,4 @@ function createGalary(items) {
 };
 
 // створюємо модалку і передаємо велику картинку 
-lightbox = new SimpleLightbox('.gallery a');
+new SimpleLightbox('.gallery a');
