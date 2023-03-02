@@ -20,10 +20,11 @@ if (savedInput !== null) {
 formRef.addEventListener('input', throttle(onFormInput, 500));
 
 function onFormInput(event) {
-    if (event.currentTarget) {
-     const { email, message } = event.currentTarget.elements;
+    const form = event.target.form;
 
-    
+    if (form) {
+        const { email, message } = form.elements;
+
         const formData = {
             email: email.value,
             message: message.value,
@@ -31,7 +32,6 @@ function onFormInput(event) {
         localStorage.setItem('feedback-form-state', JSON.stringify(formData));
     }
 };
-
 
 // Під час сабміту форми виводимо у консоль об'єкт з полями email, message та їхніми поточними значеннями.
 formRef.addEventListener('submit', onFormSubmit);
