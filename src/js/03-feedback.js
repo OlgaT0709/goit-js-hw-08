@@ -47,7 +47,7 @@ function onFormSubmit(event) {
         };
         console.log(formData);
 
-      
+         
     // очищуємо сховище і поля форми
     event.currentTarget.reset();
     localStorage.removeItem(LOCALSTORAGE_KEY);

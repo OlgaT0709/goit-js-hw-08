@@ -2,6 +2,7 @@ import Vimeo from '@vimeo/player';
 import throttle from 'lodash.throttle';
 
 const iframe = document.querySelector('#vimeo-player');
+const LOCALSTORAGE_KEY = "videoplayer-current-time";
 
 // створюємо плеєр Vimeo 
 const player = new Vimeo(iframe, {
@@ -16,15 +17,15 @@ player.on('timeupdate', throttle(onPlayerTimeupdate, 1000));
 
   // зберігаємо поточний час відтворення у localStorage
   function onPlayerTimeupdate (data){
-    localStorage.setItem('videoplayer-current-time', data.seconds);
+    localStorage.setItem(LOCALSTORAGE_KEY, data.seconds);
    
   };
 
 // встановлюємо час відтворення з localStorage, якщо він збережений
-const savedTime = localStorage.getItem('videoplayer-current-time');
+const savedTime = localStorage.getItem(LOCALSTORAGE_KEY);
 if (savedTime) {
   player.setCurrentTime(savedTime);
  
 }
 // очищуємо localStorage
- localStorage.removeItem('videoplayer-current-time');
+//  localStorage.removeItem(LOCALSTORAGE_KEY);
