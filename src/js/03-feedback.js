@@ -4,10 +4,10 @@ import throttle from 'lodash.throttle';
 const formRef = document.querySelector('.feedback-form');
 const emailRef = formRef.querySelector('input[name="email"]');
 const messageRef = formRef.querySelector('textarea[name="message"]');
-
+const LOCALSTORAGE_KEY = "feedback-form-state";
        
 // Під час завантаження сторінки перевіряємо стан сховища, і якщо там є збережені дані, заповнюємо ними поля форми.
-const savedInput = JSON.parse(localStorage.getItem('feedback-form-state'));
+const savedInput = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
 if (savedInput !== null) {
     
     emailRef.value = savedInput.email;
@@ -29,7 +29,7 @@ function onFormInput(event) {
             email: email.value,
             message: message.value,
         };
-        localStorage.setItem('feedback-form-state', JSON.stringify(formData));
+        localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(formData));
     }
 };
 
@@ -47,10 +47,11 @@ function onFormSubmit(event) {
         };
         console.log(formData);
 
-           
+      
     // очищуємо сховище і поля форми
     event.currentTarget.reset();
-    localStorage.removeItem('feedback-form-state');
+    localStorage.removeItem(LOCALSTORAGE_KEY);
     };
  
     
+           
