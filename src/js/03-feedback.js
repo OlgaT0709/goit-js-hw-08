@@ -7,12 +7,17 @@ const messageRef = formRef.querySelector('textarea[name="message"]');
 const LOCALSTORAGE_KEY = "feedback-form-state";
        
 // Під час завантаження сторінки перевіряємо стан сховища, і якщо там є збережені дані, заповнюємо ними поля форми.
-const savedInput = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
-if (savedInput) {
+try {
+    const savedInput = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
+    if (savedInput) {
     
-    emailRef.value = savedInput.email;
-    messageRef.value = savedInput.message;
-}
+        emailRef.value = savedInput.email;
+        messageRef.value = savedInput.message;
+    };
+} catch (error) {
+    console.log(error.name);
+    console.log(error.message);
+};
 
 // Відстежуємо на формі подію input,  
 // Сховище оновлюється не частіше, ніж раз на 500 мілісекунд (використовуємо бібліотеку lodash.throttle)
